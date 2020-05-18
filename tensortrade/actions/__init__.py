@@ -1,11 +1,13 @@
 from .action_scheme import ActionScheme
 from .simple_orders import SimpleOrders
 from .managed_risk_orders import ManagedRiskOrders
+from .action_scheme_simple import ActionSchemeSimple
 
 
 _registry = {
     'simple': SimpleOrders,
     'managed-risk': ManagedRiskOrders,
+    'action-scheme-simple': ActionSchemeSimple,
 }
 
 

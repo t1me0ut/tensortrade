@@ -25,9 +25,8 @@ data = pd.concat([
 ], axis=1)
 data = data.rename({"BTC:date": "date"}, axis=1)
 
-
-idx = list(range(15000, 20000))
-
+# Select time frame
+idx = list(range(10000, 25000))
 data = data.iloc[idx, :]
 print(data.head())
 
@@ -80,7 +79,7 @@ data_bts_high = np.empty(0)
 while not done:
     # action = np.random.randint(-1, 2)
     # action = simple_trend(data_bts_close)
-    action.append(mooving_avg(data_bts_close))
+    action.append(mooving_avg(data_bts_close, memory_len=100, filter_len=30))
     next_state, reward, done, info = env.step(action[-1])
     data_bts_close = np.concatenate([data_bts_close, np.array(next_state[-1, 0], ndmin=1)])
     data_bts_low = np.concatenate([data_bts_low, np.array(next_state[-1, 1], ndmin=1)])
@@ -99,7 +98,7 @@ orders = env.broker.executed
 # print(portfolio.performance.head())
 
 fig = plt.figure()
-fig.set_size_inches(18.5, 10.5)
+fig.set_size_inches(16.5, 8.5)
 ax1 = fig.add_subplot(121)
 ax1.plot(data['date'].values, bitcoin_price_close)
 ax1.plot(data['date'].values, bitcoin_price_close_avg)

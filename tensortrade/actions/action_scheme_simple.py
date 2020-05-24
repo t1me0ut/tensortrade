@@ -20,6 +20,7 @@ from gym.spaces import Discrete
 from tensortrade.actions import ActionScheme
 from tensortrade.orders import TradeSide, TradeType, Order, OrderListener, risk_managed_order
 from tensortrade.orders.criteria import Stop, Limit
+from tensortrade.orders import Order, OrderSpec
 
 
 class ActionSchemeSimple(ActionScheme):
@@ -129,6 +130,16 @@ class ActionSchemeSimple(ActionScheme):
                       criteria=None,  # Stop("down", 0.1) ^ Stop("up", 0.1),
                       end=None,
                       portfolio=portfolio)
+
+        # risk_criteria = Stop("down", 0.01) ^ Stop("up", 0.01)
+        # risk_management = OrderSpec(
+        #     side=TradeSide.SELL if side == TradeSide.BUY else TradeSide.BUY,
+        #     trade_type=TradeType.MARKET,
+        #     exchange_pair=exchange_pair,
+        #     criteria=risk_criteria
+        # )
+        #
+        # order += risk_management
 
         if self._order_listener is not None:
             order.attach(self._order_listener)

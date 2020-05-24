@@ -9,7 +9,7 @@ from . import orders
 from . import rewards
 from . import stochastic
 from . import wallets
-from . import agents
+# from . import agents
 
 
 from .version import __version__

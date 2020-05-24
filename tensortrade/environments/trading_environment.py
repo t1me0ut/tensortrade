@@ -100,7 +100,7 @@ class TradingEnvironment(gym.Env, TimeIndexed):
         self._observation_dtype = kwargs.get('dtype', np.float32)
         self._observation_lows = kwargs.get('observation_lows', -np.iinfo(np.int64).max)
         self._observation_highs = kwargs.get('observation_highs', np.iinfo(np.int64).max)
-        self._max_allowed_loss = kwargs.get('max_allowed_loss', 0.1)
+        self._max_allowed_loss = kwargs.get('max_allowed_loss', 0.0)
 
         if self._enable_logger:
             self.logger = logging.getLogger(kwargs.get('logger_name', __name__))
